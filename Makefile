@@ -17,8 +17,8 @@ install:
 
 tar:
 	cargo build --release;
-	tar -czf add-alias.tar.gz ./target/release/add-alias
-	shasum -a 256 add-alias.tar.gz
+	tar -czf $(prog).tar.gz ./target/release/$(prog)
+	shasum -a 256 $(prog).tar.gz
 
 tag:
 	git tag -a v$(version) -m "version $(version)"
