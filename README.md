@@ -1,8 +1,18 @@
 # AddAlias
 > Easily manage bash aliases.
 
-## Usage
+# Installation
+Download the latest release [tar.gz](https://github.com/Rawnly/aalias/releases/latest/download/aalias.tar.gz) or [bin](https://github.com/Rawnly/aalias/releases/latest/download/aalias)
 
+If you are on MacOS you can install `aalias` via **homebrew**:
+```
+    brew tap rawnly/tap
+    brew install aalias
+```
+
+
+
+## Usage
 ```sh
 USAGE:
     aalias [ARGS] [SUBCOMMAND]
