@@ -5,7 +5,7 @@
 
 ```sh
 USAGE:
-    add-alias [ARGS] [SUBCOMMAND]
+    aalias [ARGS] [SUBCOMMAND]
 
 ARGS:
     <name>        Name of the alias
