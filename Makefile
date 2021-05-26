@@ -1,4 +1,4 @@
-prog :=add-alias
+prog :=aalias
 debug ?=
 
 ifdef debug
