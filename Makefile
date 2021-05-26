@@ -1,7 +1,6 @@
 prog :=add-alias
 debug ?=
 
-
 ifdef debug
 	release :=
 	target :=debug
@@ -14,7 +13,7 @@ build:
 	cargo build $(release)
 
 install:
-	cp target/$(target)/$(prog) ~/usr/local/bin
+	mv ./target/$(target)/$(prog) /usr/local/bin/$(prog)
 
 tar:
 	cargo build --release;
@@ -24,7 +23,6 @@ tar:
 tag:
 	git tag -a v$(version) -m "version $(version)"
 	git push --tags
-
 
 help:
 	@echo "usage: make $(prog) [debug=1]"
