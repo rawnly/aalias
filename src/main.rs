@@ -1,3 +1,4 @@
+// Comment
 use clap::{App, Arg, AppSettings};
 use std::{env, fs::OpenOptions, io::{Result, prelude::*, stdin, stdout}, path::{Path}};
 use simple_storage::{Storage, Value};
