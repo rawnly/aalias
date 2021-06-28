@@ -1,9 +1,16 @@
-use clap::{App, Arg};
-use std::{env, fs::OpenOptions, io::{Result, prelude::*, stdin, stdout}, path::Path};
+use clap::{App, Arg, AppSettings};
+use std::{env, fs::OpenOptions, io::{Result, prelude::*, stdin, stdout}, path::{Path}};
 use simple_storage::{Storage, Value};
 
+extern crate dirs;
+
 fn format_path(path: &str) -> String {
-    return path.replace("~", env!("HOME"));
+    let home: String = match dirs::home_dir() {
+        Some(dir) => String::from(dir.to_str().expect("Error")),
+        None => String::new()
+    };
+
+    return path.replace("~", home.as_str());
 }
 
 fn ask_question(question: &str) -> Result<String> {
@@ -38,20 +45,26 @@ fn main() -> Result<()> {
                 .about("Value of the alias")
                 .multiple(true)
                 .index(2)
+                .requires("name")
         )
         .subcommand(
             App::new("setup")
                     .about("setup basic configuration")
+                    .alias("config")
         )
+        .setting(AppSettings::ArgRequiredElseHelp)
         .get_matches();
 
     let mut alias_key: &str = "";
     let mut alias_value: String = String::new();
     let alias_file_storage_key : String = "alias-file".to_string();
 
+
+    let homepath = format_path("~");
+
     let file: String = match storage.get(alias_file_storage_key.to_string()) {
         Ok(val) => val.to_string().replace("\"", ""),
-        Err(_er) => format!("{}/.bashrc", env!("HOME"))
+        Err(_er) => format!("{}/.bashrc", homepath)
     };
 
 
@@ -73,12 +86,11 @@ fn main() -> Result<()> {
         return Ok(());
     }
 
-
-    let filepath = Path::new(&file);
-    println!("writing to file: {}", filepath.display());
-
-    if !filepath.exists() {
-        eprintln!("The specified file: {} cannot be found.", file);
+    if matches.value_of("name") == None && matches.value_of("value") == None {
+        println!("aalias <name> <value>");
+        println!("OR");
+        println!("aalias [setup|config]");
+        return Ok(());
     }
 
     if let Some(k) = matches.value_of("name") {
@@ -91,6 +103,13 @@ fn main() -> Result<()> {
         }
 
         alias_value = String::from(alias_value.trim_end());
+    }
+
+    let filepath = Path::new(&file);
+    println!("writing to file: {}", filepath.display());
+
+    if !filepath.exists() {
+        eprintln!("The specified file: {} cannot be found.", file);
     }
 
     // open the file
