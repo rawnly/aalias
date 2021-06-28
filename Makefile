@@ -17,7 +17,7 @@ install:
 
 tar:
 	cargo build --release;
-	tar -czf $(prog).tar.gz ./target/release/$(prog)
+	tar -czf $(prog).tar.gz --directory=./target/$(target) $(prog)
 	shasum -a 256 $(prog).tar.gz
 
 tag:
