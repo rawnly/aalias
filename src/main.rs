@@ -201,7 +201,7 @@ fn read_aliases(content: &str) {
 }
 
 fn main() -> Result<()> {
-    let mut storage: Storage = Storage::new("/tmp/alias-config.json");
+    let mut storage: Storage = Storage::new(&format_path("~/.config/alias-config.json"));
     storage.pull()?;
 
     let matches = App::new("AddAlias")
