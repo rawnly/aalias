@@ -1,7 +1,7 @@
 [package]
 name = "aalias"
-version = "0.1.1"
-authors = ["Federico Vitale <fedevitale99@gmail.com>"]
+version = "0.1.3"
+authors = ["Federico Vitale <mail@fedevitale.dev>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -10,5 +10,6 @@ edition = "2018"
 simple-storage = "0.0.2"
 clap = "3.0.0-beta.2"
 dirs = "3.0"
+termimad = "0.20.1"
 regex = "1.5"
 colored = "2"
