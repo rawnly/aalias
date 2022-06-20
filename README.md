@@ -4,7 +4,7 @@
 # Installation
 Download the latest release [tar.gz](https://github.com/Rawnly/aalias/releases/latest/download/aalias.tar.gz) or [bin](https://github.com/Rawnly/aalias/releases/latest/download/aalias)
 
-If you are on MacOS you can install `aalias` via **homebrew**:
+Via **homebrew**:
 ```
     brew tap rawnly/tap
     brew install aalias
@@ -13,7 +13,12 @@ If you are on MacOS you can install `aalias` via **homebrew**:
 
 
 ## Usage
-```sh
+
+```bash
+aalias md 'markdown -p'
+```
+
+```bash
 USAGE:
     aalias [ARGS] [SUBCOMMAND]
 
@@ -26,12 +31,9 @@ FLAGS:
     -V, --version    Prints version information
 
 SUBCOMMANDS:
-    help     Prints this message or the help of the given subcommand(s)
-    setup    setup basic configuration
-
-EXAMPLES:
-  add-alias md markdown -p
-  # Equivalent to
-  alias md='markdown -p'
-  # Plus adding it to your rc file.
+    disable    Disable an alias
+    enable     Enable an alias
+    help       Prints this message or the help of the given subcommand(s)
+    list       List alla aliases
+    setup      Setup basic configuration
 ```
